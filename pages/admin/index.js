@@ -52,27 +52,31 @@ function CreateNewPost() {
   const createPost = async (e) => {
     e.preventDefault();
     const uid = auth.currentUser.uid;
-    const ref = firestore.collection('users').doc(uid).collection('posts').doc(slug);
-
-    // Tip: give all fields a default value here
-    const data = {
-      title,
-      slug,
-      uid,
-      username,
-      published: false,
-      content: '# hello world!',
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp(),
-      heartCount: 0,
-    };
-
-    await ref.set(data);
-
-    toast.success('Post created!');
-
-    // Imperative navigation after doc is set
-    router.push(`/admin/${slug}`);
+    if (uid === "YU5rZZeiHbgN8oUfsnJOSI623Uf2") {
+      const ref = firestore.collection('users').doc(uid).collection('posts').doc(slug);
+  
+      // Tip: give all fields a default value here
+      const data = {
+        title,
+        slug,
+        uid,
+        username,
+        published: false,
+        content: '# hello world!',
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+        heartCount: 0,
+      };
+  
+      await ref.set(data);
+  
+      toast.success('Post created!');
+  
+      // Imperative navigation after doc is set
+      router.push(`/admin/${slug}`);
+    } else {
+      console.error("Unauthorized user.");
+    }
   };
 
   return (

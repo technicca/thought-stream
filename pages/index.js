@@ -2,7 +2,7 @@ import PostFeed from '@components/PostFeed';
 import Metatags from '@components/Metatags';
 import Loader from '@components/Loader';
 import { firestore, fromMillis, postToJSON } from '@lib/firebase';
-
+import Link from 'next/link';
 import { useState } from 'react';
 
 // Max post to query per page
@@ -54,21 +54,25 @@ export default function Home(props) {
 
   return (
     <main>
+      <Link href="https://www.sekletsov.xyz/">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
+  <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+</svg> Back to main</Link>
       <Metatags title="Home Page" description="Get the latest posts on our site" />
 
-      <div className="card card-info">
-        <h2>💡 Next.js + Firebase - The Full Course</h2>
-        <p>Welcome! This app is built with Next.js and Firebase and is loosely inspired by Dev.to.</p>
-        <p>Sign up for an 👨‍🎤 account, ✍️ write posts, then 💞 heart content created by other users. All public content is server-rendered and search-engine optimized.</p>
-      </div>
+      
      
       <PostFeed posts={posts} />
 
-      {!loading && !postsEnd && <button onClick={getMorePosts}>Load more</button>}
+      {!loading && !postsEnd && <button className='btn-google' onClick={getMorePosts}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-three-dots" viewBox="0 0 16 16">
+  <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+</svg>
+</button>}
 
       <Loader show={loading} />
 
-      {postsEnd && 'You have reached the end!'}
+      {postsEnd && '[end...]'}
     </main>
   );
 }

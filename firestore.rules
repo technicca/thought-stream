@@ -69,7 +69,14 @@ service cloud.firestore {
         
         return isOwner && isNow && isValidContent && doesNotUpdateForbidden;
       }
-
+      
+       match /users/{userId}/posts/{postId}/comments/{commentId} {
+        allow read;
+        allow create: if request.auth.uid == request.resource.data.uid;
+        allow update: if request.auth.uid == request.resource.data.uid;
+        allow delete: if request.auth.uid == request.resource.data.uid;
+      }
+      
       // Hearts
       
       function canIncrementHearts(userId, postId) {
