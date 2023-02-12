@@ -7,12 +7,12 @@
 
 Usage:
 
-<code>
+```
 git clone https://github.com/technicca/thought-stream
 cd thought-stream
 npm i
 npm run dev
-</code>
+```
 
 Copy your firebaseConfig and modify lib/firebase.js accordingly.
 
