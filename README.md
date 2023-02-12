@@ -3,7 +3,7 @@
 
   
 
-[Demo](https://notes.sekletsov.xyz/)
+[Demo](https://thoughts.sekletsov.xyz/)
 
 Usage:
 
